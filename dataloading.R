@@ -1,5 +1,11 @@
 nursing <- read.csv("~/Github/bayes-nursing/California_Nursing_Home_-_ALL_Data.csv")
-#View(California_Nursing_Home_._ALL_Data)
+View(nursing)
+nrow(nursing)
+justzip <- numeric()
+for( i in 1:584) {
+justzip[i] <- substr(nursing$f_zip[i],1, 5)
+}
+nursing$justzip <- justzip
 
 str(Nursing)
 nursing$f_zip
@@ -20,3 +26,9 @@ nursing$zippop
 
 #Scoring
 #U.S. Government Rating  zip_CMS_overall_rating	Number	8	Overview-CMS Rating	CMS NH COMPARE	U.S. Government Rating from NH Compare Website.  This is the average rating for all of the nursing homes in the zip code.	The U.S. Centers for Medicare & Medicaid Services (CMS) created a five-star quality rating system to help consumers, their families, and caregivers compare nursing homes and help identify areas where questions could be asked.  Nursing homes with five stars are considered to have above average quality and nursing homes with one star are below average quality.
+
+hist(nursing$zippop)
+head(nursing)
+
+length(unique(nursing$f_zip))
+
