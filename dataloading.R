@@ -4,18 +4,24 @@ setwd("/Users/Vivek/Github/bayes-nursing")
 
 View(nursing)
 nrow(nursing)
-justzip <- numeric()
+
+#pull out only first 5 numbers aka the zip code.
+just_zip <- numeric()
 for( i in 1:584) {
-justzip[i] <- substr(nursing$f_zip[i],1, 5)
+just_zip[i] <- substr(nursing$f_zip[i],1, 5)
 }
-nursing$justzip <- as.numeric(justzip)
-str(nursing$justzip)
-write.csv(nursing, "nursing_zip_fixed.csv")
+nursing$just_zip <- as.numeric(just_zip)
 
 country <- "United States"
 nursing$country <- country
 
-nursing$country
+nursing$num_empty_beds = nursing$num_facilities * nursing$zip_numbeds * (1-nursing$zip_occup_rate/100)
+nursing$total_beds = nursing$num_facilities * nursing$zip_numbeds
+
+
+#hist(nursing$num_empty_beds)
+#nursing$num_empty_beds
+
 
 str(Nursing)
 nursing$f_zip
@@ -104,12 +110,18 @@ fit <- lm(zip_CMS_overall_rating ~ zip_state_penalty_amount
 
 summary(fit)
 
+
 str(nursing$zip_state_penalty_amount)
 
 cor(nursing$zip_state_penalty_amount, nursing$zip_CMS_overall_rating, use = "complete.obs")
-install.packages("corrgram")
-library(corrplot)
-corrplot(nursing)
+#There is a negative correlation between between penaltys and overall quality
+#which makes sense.
+
+#install.packages("corrgram")
+#library(corrplot)
+#corrplot(nursing)
+#Takes too long.
+
 
 corr.test()
 cor(nursing)
@@ -139,11 +151,12 @@ nursing$zip_numbeds
 
 nursing$zip_non_profit
 
-nursing$num_empty_beds = nursing$num_facilities * nursing$zip_numbeds * (1-nursing$zip_occup_rate/100)
-nursing$total_beds = nursing$num_facilities * nursing$zip_numbeds
 
-hist(nursing$num_empty_beds)
-str(nursing$num_empty_beds)
-nursing$num_empty_beds
 
-nursing$justzip
+
+##################################################
+#Write to csv part.
+final_nursing_frame <- data.frame(nursing$country, nursing$just_zip, nursing$num_empty_beds, 
+                                  nursing$total_beds, nursing$zip_CMS_overall_rating, nursing$zippop)
+
+write.csv(final_nursing_frame, "nursing_less_data.csv")
