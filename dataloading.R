@@ -8,9 +8,14 @@ justzip <- numeric()
 for( i in 1:584) {
 justzip[i] <- substr(nursing$f_zip[i],1, 5)
 }
-nursing$justzip <- justzip
-
+nursing$justzip <- as.numeric(justzip)
+str(nursing$justzip)
 write.csv(nursing, "nursing_zip_fixed.csv")
+
+country <- "United States"
+nursing$country <- country
+
+nursing$country
 
 str(Nursing)
 nursing$f_zip
