@@ -32,3 +32,12 @@ head(nursing)
 
 length(unique(nursing$f_zip))
 
+
+###################
+#QUALITY SECTION
+
+
+##NEGATIVES
+#zip_state_penalty_amount
+#Total State Fines  zip_state_penalty_amount	Number	8	Quality of Facility-State Enforcement	ELMS	Average State Penalty Fine Amount	State citations are categorized into classes, based on how seriously harmed residents either were or could be if the problem is not fixed.  
+
