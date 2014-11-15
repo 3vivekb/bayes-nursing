@@ -1,4 +1,5 @@
 nursing <- read.csv("~/Github/bayes-nursing/California_Nursing_Home_-_ALL_Data.csv")
+getwd()
 setwd("/Users/Vivek/Github/bayes-nursing")
 
 View(nursing)
@@ -139,3 +140,5 @@ nursing$total_beds = nursing$num_facilities * nursing$zip_numbeds
 hist(nursing$num_empty_beds)
 str(nursing$num_empty_beds)
 nursing$num_empty_beds
+
+nursing$justzip
