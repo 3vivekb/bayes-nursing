@@ -10,7 +10,7 @@ just_zip <- numeric()
 for( i in 1:584) {
 just_zip[i] <- substr(nursing$f_zip[i],1, 5)
 }
-nursing$just_zip <- as.numeric(just_zip)
+nursing$just_zip <- as.character(just_zip)
 
 country <- "United States"
 nursing$country <- country
@@ -160,3 +160,7 @@ final_nursing_frame <- data.frame(nursing$country, nursing$just_zip, nursing$num
                                   nursing$total_beds, nursing$zip_CMS_overall_rating, nursing$zippop)
 
 write.csv(final_nursing_frame, "nursing_less_data.csv")
+
+#by postal code
+#by nursing_coutnry
+#georef by admin region
