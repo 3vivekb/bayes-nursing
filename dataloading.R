@@ -164,3 +164,5 @@ write.csv(final_nursing_frame, "nursing_less_data.csv")
 #by postal code
 #by nursing_coutnry
 #georef by admin region
+#change postal code to a string
+#change anything thats anumber to a number
